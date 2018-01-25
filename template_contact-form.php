@@ -11,7 +11,7 @@
 				<div class="enquiry-template">
 					<h3 class="sep">Get in Touch</h3>
 					<br>
-					<form action="<?php the_permalink(); ?>" method="post" class="enquiry-form">
+					<form action="<?php the_permalink(); ?>" method="post" class="contact-form needs-validation">
 						<div class="row">
 							<!-- Name -->
 							<div class="col-md-6">

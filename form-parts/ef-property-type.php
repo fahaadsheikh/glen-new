@@ -1,7 +1,7 @@
 <div class="form-group row">
-  <label for="property-type" class="col-sm-4 col-form-label"><?php echo __( 'Property Type', 'dym' ) ?>*</label>
+  <label for="property_type" class="col-sm-4 col-form-label"><?php echo __( 'Property Type', 'dym' ) ?>*</label>
   <div class="col-sm-8">
-    <select id="property-type" name="property-type" class="custom-select">
+    <select id="property_type" name="property_type" class="custom-select">
       	<option value="-1" selected><?php echo __( 'Select', 'dym' ) ?></option>
 		<option value="House"><?php echo __( 'House', 'dym' ) ?></option>
 		<option value="House + Granny Flat"><?php echo __( 'House + Granny Flat', 'dym' ) ?></option>

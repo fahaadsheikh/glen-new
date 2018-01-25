@@ -1,5 +1,5 @@
 <div class="form-group row">
-  <label for="parking" class="col-sm-4 col-form-label"><?php echo __( '', 'dym' ) ?>Special Features*</label>
+  <label for="parking" class="col-sm-4 col-form-label"><?php echo __( '', 'dym' ) ?>Special Features</label>
   <div class="col-sm-8">
     <div class="row">
 		<div class="col-md-6">

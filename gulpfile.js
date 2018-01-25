@@ -213,6 +213,7 @@ gulp.task('scripts', function() {
   gulp.src(scripts)
     .pipe(concat('theme.js'))
     .pipe(gulp.dest('./js/'));
+    
 });
 
 // Deleting any file inside the /src folder
