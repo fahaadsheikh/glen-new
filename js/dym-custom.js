@@ -60,6 +60,7 @@ jQuery( document ).ready( function ($) {
 			currently_listed: "required",
 			first_name : "required",
 			surname: "required",
+			termsagree: "required",
 			email: {
 				required: true,
 				email: true
@@ -70,9 +71,7 @@ jQuery( document ).ready( function ($) {
 				equalTo: "#email"
 			},
 			telephone: "required",
-			termsagree: {
-				required: true
-			},
+			
 		},
 		messages: {
 			property_type: "Please enter a Property Type",
@@ -90,14 +89,21 @@ jQuery( document ).ready( function ($) {
 			first_name : "Please enter a First Name",
 			surname: "Please enter a Surname",
 			email: "Please enter a valid email address",
-			confirm_email: "Please enter a valid email address",
-			termsagree: "Please agree to our terms"
+			confirm_email: {
+				required: "Please enter a valid email address",
+            	equalTo: "Your emails do not match",
+        	},
+			termsagree: "Please check to agree to the terms and conditions"
 		},
 		errorElement: "div",
 		errorPlacement: function ( error, element ) {
 			// Add the `help-block` class to the error element
 			error.addClass( "invalid-feedback" );
-			error.insertAfter( element );
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( "label" ) );
+			} else {
+				error.insertAfter( element );
+			}
 		}
 	} );
 
