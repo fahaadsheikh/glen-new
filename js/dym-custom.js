@@ -214,7 +214,7 @@ jQuery( document ).ready( function ($) {
 				console.log(response);
 				$('.btn').prop('disabled', false);
 				$(".loader").html('');
-				$('#enf-modal').modal('show');
+				$('#cf-modal').modal('show');
 			},
 			error: function(xhr, ajaxOptions, thrownError) {				
 				$( '.response-message' ).removeClass('alert-success');
