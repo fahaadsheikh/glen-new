@@ -152,12 +152,13 @@ jQuery( document ).ready( function ($) {
 			},
 			beforeSend: function () {
 				// Show Loader
-				$("#quotation-form-submit").css("display", "none");
-				$("#quotation-form-loader").css("display", "block");
-				console.log("check");
+				$('.btn').prop('disabled', true);
+				$(".loader").html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
 			},
 			success: function( response ) {
-				
+				$('.btn').prop('disabled', false);
+				$(".loader").html('');
+				$('#myModal').modal('show');
 				console.log(response);
 			},
 			error: function(xhr, ajaxOptions, thrownError) {				

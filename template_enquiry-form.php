@@ -143,8 +143,9 @@
 							</div>
 							<input type="hidden" name="enquiry_nonce" id="enquiry_nonce" value="<?php echo wp_create_nonce( "enquiry_nonce" ); ?>">
 							<input type="hidden" name="action" value="dym_send_and_save_enquiry">
-							<div class="response"></div>
 						</div>
+						<!-- Modal -->
+						<?php get_template_part( 'form-parts/ef-modal' );  ?>
 					</form>
 				</div>
 			</div>

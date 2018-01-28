@@ -6,6 +6,7 @@
     </label>
   </div>
   <div class="col-sm-4">
-     <button type="submit" class="btn btn-primary"><?php echo __( 'Send your Details to Us', 'dym' ) ?></button>
+  	<div class="loader"></div>
+	<button type="submit" class="btn btn-primary"><?php echo __( 'Send your Details to Us', 'dym' ) ?></button>
   </div>
 </div>

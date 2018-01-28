@@ -9623,6 +9623,19 @@ p.term:before {
   bottom: 5px;
   margin-bottom: 0px; }
 
+.loader {
+  position: absolute;
+  display: inline-block;
+  left: -25px;
+  font-size: 20px;
+  line-height: 30px;
+  overflow: visible;
+  width: 35px;
+  top: 0px;
+  height: 35px;
+  vertical-align: middle;
+  color: #002b3f; }
+
 .section {
   margin-top: 100px; }
 
@@ -9635,6 +9648,9 @@ p.term:before {
 .section-subtitle {
   text-align: center;
   color: #002b3f; }
+
+.modal-title {
+  color: #03a9f4; }
 
 /* Featured Box CSS */
 .row.featured-report {
