@@ -2,18 +2,20 @@
 
 <?php get_header( ); ?>
 
-<?php $container   = get_theme_mod( 'understrap_container_type' ); ?>
+<?php $container   = get_theme_mod( 'understrap_container_type' ); 
+$theme_options = get_option( 'dym_theme_options' );
+?>
 
 <div class="wrapper frontpage" id="page-wrapper">
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
 		<div class="row overlap">
 			<div class="col-md-12">
 				<div class="enquiry-template">
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					<p><?php echo $theme_options['dym_enquiry_intro_one'] ?></p>
+					<p><?php echo $theme_options['dym_enquiry_intro_two'] ?></p>
 
 					<br>
-					<h3 class="sep">About Your Property</h3>
+					<h3 class="sep"><?php echo $theme_options['dym_enquiry_heading_one'] ?></h3>
 					<p class="term">Required Fields to provide you with your FREE online property report.</p>
 					<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post" class="enquiry-form">
 						<div class="row">
@@ -100,7 +102,7 @@
 							</div>
 						</div>
 						<div class="mt-5">
-							<h3 class="sep">About Your Property</h3>
+							<h3 class="sep"><?php echo $theme_options['dym_enquiry_heading_two'] ?></h3>
 							<br>
 							<div class="row">
 								<!-- First Name -->
@@ -138,7 +140,7 @@
 							<div class="row">
 								<!-- Terms Text -->
 								<div class="offset-md-2 col-md-10">
-									<?php get_template_part( 'form-parts/ef-terms-text' );  ?>	
+									<?php echo get_bloginfo( 'name' ) . ' ' . $theme_options['dym_enquiry_terms_text']; ?>	
 								</div>
 							</div>
 							<input type="hidden" name="enquiry_nonce" id="enquiry_nonce" value="<?php echo wp_create_nonce( "enquiry_nonce" ); ?>">

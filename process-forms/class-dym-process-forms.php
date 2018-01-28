@@ -11,8 +11,8 @@ class dym_process_forms
 		add_action( 'after_switch_theme', array($this, 'dym_create_tables') ); 
 
 		// Contact Form
-		add_action('wp_ajax_contact_email', array($this, 'contact_email') );
-		add_action('wp_ajax_nopriv_contact_email', array($this, 'contact_email') );
+		add_action('wp_ajax_dym_send_contact_request', array($this, 'dym_send_contact_request') );
+		add_action('wp_ajax_nopriv_dym_send_contact_request', array($this, 'dym_send_contact_request') );
 
 		// Enquiry Form
 		add_action('wp_ajax_dym_send_and_save_enquiry', array($this, 'dym_send_and_save_enquiry') );
@@ -127,8 +127,6 @@ class dym_process_forms
 	 **/
 	public function dym_send_and_save_enquiry()
 	{
-		
-
 		$property_type 			= sanitize_text_field( $_POST['property_type'] );
 		$unit 					= sanitize_text_field( $_POST['unit'] );
 		$street 				= sanitize_text_field( $_POST['street']);
@@ -158,7 +156,7 @@ class dym_process_forms
 		}
 
 		if ($dym_send_enquiry_email) {
-			$dym_send_thankyou_email = $this->dym_send_thankyou_email($property_type, $unit, $street, $bedrooms, $street_name, $bathrooms, $suburbs, $conditions, $state, $est_size, $property_relationship, $parking, $purpose_of_request, $special_features, $currently_listed, $other, $first_name, $surname, $telephone, $email, $confirm_email);
+			$dym_send_thankyou_email = $this->dym_send_thankyou_email($email, 'Enquiry');
 		}
 
 		if ($dym_send_thankyou_email) {
@@ -167,29 +165,6 @@ class dym_process_forms
 		else {
 			echo "Not Done";
 		}
-		// Don't forget to stop execution afterward.
-		/*var_dump("<strong>property_type</strong>" . $property_type . '</br>');
-		var_dump("<strong>unit</strong>" . $unit . '</br>');
-		var_dump("<strong>street</strong>" . $street . '</br>');
-		var_dump("<strong>bedrooms</strong>" . $bedrooms . '</br>');
-		var_dump("<strong>street_name</strong>" . $street_name . '</br>');
-		var_dump("<strong>bathrooms</strong>" . $bathrooms . '</br>');
-		var_dump("<strong>suburbs</strong>" . $suburbs . '</br>');
-		var_dump("<strong>conditions</strong>" . $conditions . '</br>');
-		var_dump("<strong>state</strong>" . $state . '</br>');
-		var_dump("<strong>est_size</strong>" . $est_size . '</br>');
-		var_dump("<strong>property_relationship </strong>" . $property_relationship  . '</br>');
-		var_dump("<strong>parking</strong>" . $parking . '</br>');
-		var_dump("<strong>purpose_of_request</strong>" . $purpose_of_request . '</br>');
-		var_dump("<strong>special_features</strong>" . $special_features . '</br>');
-		var_dump("<strong>currently_listed</strong>" . $currently_listed . '</br>');
-		var_dump("<strong>other</strong>" . $other . '</br>');
-		var_dump("<strong>first_name</strong>" . $first_name . '</br>');
-		var_dump("<strong>surname</strong>" . $surname . '</br>');
-		var_dump("<strong>telephone</strong>" . $telephone . '</br>');
-		var_dump("<strong>email</strong>" . $email . '</br>');
-		var_dump("<strong>confirm_email</strong>" . $confirm_email . '</br>');
-		var_dump("<strong>result found" . '</br>');*/
 		wp_die();
 	}
 
@@ -245,17 +220,80 @@ class dym_process_forms
 	}
 
 	/**
-	 * undocumented function
+	 * Send Contact Request
 	 *
 	 * @return void
 	 * @author 
 	 **/
-	public function dym_send_thankyou_email($email)
+	public function dym_send_contact_request()
+	{
+		$name 		= sanitize_text_field( $_POST['name'] );
+		$email 		= sanitize_text_field( $_POST['email'] );
+		$phone 		= sanitize_text_field( $_POST['phone'] );
+		$address 	= sanitize_text_field( $_POST['address'] );
+		$message 	= sanitize_text_field( $_POST['message'] );
+
+		$dym_send_contact_email = $this->dym_send_contact_email($name, $email, $phone, $address, $message);
+
+
+		if ($dym_send_contact_email) {
+			$dym_send_thankyou_email = $this->dym_send_thankyou_email($email, 'Contact');
+		}
+
+		if ($dym_send_thankyou_email) {
+			echo "All Done";
+		}
+		else {
+			echo "Not Done";
+		}
+		wp_die();
+	}
+
+	/**
+	 * Send Contact Email
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function dym_send_contact_email($name, $email, $phone, $address, $message)
 	{
 		$theme_options = get_option( 'dym_theme_options' ); 
 
+		$form_entries = array( 
+			'Name' 		=> $name,
+			'Email' 	=> $email,
+			'Phone' 	=> $phone,
+			'Address' 	=> $address,
+			'Message'	=> $message
+		);
+
 		$to = $email;
-		$subject = get_bloginfo('name') . ' Enquiry Submission Recieved';
+		$subject = get_bloginfo('name') . ' ' . $type . ' Submission Recieved';
+		$message .= '<h3 align="center"> Contact Enquiry Information</h3>';
+		$message .= '<table rules="all" style="border-color: #666;" cellpadding="10" align="center">';
+		foreach ($form_entries as $key => $value) {
+			$message .= "<tr style='background: #eee;'><td>". $key ."</td><td>". $value ."</td></tr>";
+		}
+		$message .= "</table>";
+		$message .= '<h4 align="center">This e-mail was sent from the enquiry form on '. get_bloginfo( 'name' ) .'('. get_bloginfo('url') .')</h4>';
+		$message .= "<br><br><br>";
+		$reply_message = wp_mail( $to , $subject, $message, $headers ); 
+
+		return $reply_message;
+	}
+
+	/**
+	 * Send Thankyou Email
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function dym_send_thankyou_email($email, $type)
+	{
+		$theme_options = get_option( 'dym_theme_options' ); 
+
+		$to = $theme_options['dym_admin_email'];
+		$subject = get_bloginfo('name') . ' ' . $type . ' Submission Recieved';
 		$message = "Thankyou for your request for information from ". get_bloginfo('name') . ".<br>"; 
 		$message .= "We will be responding to this request within the next 48 hours.<br>";
 		$message .= "<br><br><br>";

@@ -9566,7 +9566,7 @@ body {
   padding: 20px; }
 
 .main-banner {
-  max-height: 700px; }
+  height: 500px; }
 
 .page-banner {
   max-height: 250px; }
@@ -9574,7 +9574,7 @@ body {
 .page-banner,
 .main-banner {
   overflow: hidden;
-  background-image: url(http://localhost/glen/wp-content/uploads/2018/01/image.png);
+  background-image: url(http://localhost/glen/wp-content/uploads/2018/01/image.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
 
@@ -9582,6 +9582,14 @@ body {
   padding: 50px 0 80px 0;
   color: #fff;
   font-weight: 600; }
+
+.main-banner .page-title {
+  padding: 150px 0 80px 0;
+  color: #fff;
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 55px;
+  letter-spacing: 0px; }
 
 .dark {
   color: #002b3f; }
@@ -9624,9 +9632,9 @@ p.term:before {
   margin-bottom: 0px; }
 
 .loader {
-  position: absolute;
+  position: relative;
   display: inline-block;
-  left: -25px;
+  left: 0;
   font-size: 20px;
   line-height: 30px;
   overflow: visible;

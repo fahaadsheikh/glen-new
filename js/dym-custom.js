@@ -5,33 +5,6 @@ jQuery( document ).ready( function ($) {
 	 return arg !== value;
 	}, "Please choose an option.");
 
-	// Contact Form Validation
-	$( ".contact-form" ).validate( {
-		rules: {
-			name: "required",
-			phone: "required",
-			email: {
-				required: true,
-				email: true
-			},
-		},
-		messages: {
-			name: "Please enter your Name",
-			email: "Please enter a valid email address",
-			phone: "Please enter a phone number"
-		},
-		errorElement: "div",
-		errorPlacement: function ( error, element ) {
-			// Add the `help-block` class to the error element
-			error.addClass( "invalid-feedback" );
-
-			if ( element.prop( "type" ) === "checkbox" ) {
-				error.insertAfter( element.parent( "label" ) );
-			} else {
-				error.insertAfter( element );
-			}
-		}
-	} );
 
 	// Enquiry Form Validaton
 	$( ".enquiry-form" ).validate( {
@@ -101,6 +74,8 @@ jQuery( document ).ready( function ($) {
 			error.addClass( "invalid-feedback" );
 			if ( element.prop( "type" ) === "checkbox" ) {
 				error.insertAfter( element.parent( "label" ) );
+			} else if(element.prop( "type" ) === "radio") {
+				error.appendTo( element.parent().parent() );
 			} else {
 				error.insertAfter( element );
 			}
@@ -158,8 +133,88 @@ jQuery( document ).ready( function ($) {
 			success: function( response ) {
 				$('.btn').prop('disabled', false);
 				$(".loader").html('');
-				$('#myModal').modal('show');
+				$('#enf-modal').modal('show');
+			},
+			error: function(xhr, ajaxOptions, thrownError) {				
+				$( '.response-message' ).removeClass('alert-success');
+				$( '.response-message' ).addClass('alert-danger');
+				$( '.response-message' ).text( 'There was an Error. Please Try Again' );
+			},
+			complete: function() {
+			    form.data('requestRunning', false);
+			}
+		});
+
+	    return false;
+	};
+
+	// Contact Form Validaton
+	$( ".contact-form" ).validate({
+		rules: {
+			name: "required",
+			email: {
+				required: true,
+				email: true
+			},
+			phone: "required",
+			text_message: "required",
+		},
+		messages: {
+			name: "Please enter your name",
+			email: "Please enter a valid email address",
+			phone: "Please enter your phone number",
+			text_message: "Please enter a message.",
+		},
+		errorElement: "div",
+		errorPlacement: function ( error, element ) {
+			// Add the `help-block` class to the error element
+			error.addClass( "invalid-feedback" );
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( "label" ) );
+			} else if(element.prop( "type" ) === "radio") {
+				error.appendTo( element.parent().parent() );
+			} else {
+				error.insertAfter( element );
+			}
+		},
+		submitHandler: function(form) {
+			$(form).ajaxSubmit();
+			send_contact_request();
+		}
+	});
+
+	function send_contact_request() {
+
+	    var form = jQuery(this);
+
+	    if ( form.data('requestRunning') ) {
+	        return;
+	    }
+
+	    form.data('requestRunning', true);
+
+	    jQuery.ajax({
+			url : ajax_object.ajax_url,
+			type : 'post',
+			dataType : 'text',
+			data : {
+				action 	: 'dym_send_contact_request',
+				name 	: $("#name").val(),
+				email 	: $("#email").val(),
+				phone 	: $("#phone").val(),
+				message : $("#text_message").val(),
+				address : $("#address").val()	
+			},
+			beforeSend: function () {
+				// Show Loader
+				$('.btn').prop('disabled', true);
+				$(".loader").html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
+			},
+			success: function( response ) {
 				console.log(response);
+				$('.btn').prop('disabled', false);
+				$(".loader").html('');
+				$('#enf-modal').modal('show');
 			},
 			error: function(xhr, ajaxOptions, thrownError) {				
 				$( '.response-message' ).removeClass('alert-success');

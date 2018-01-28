@@ -2,7 +2,7 @@
 
 <?php get_header( ); ?>
 
-<?php $container   = get_theme_mod( 'understrap_container_type' ); ?>
+<?php $container = get_theme_mod( 'understrap_container_type' ); ?>
 
 <div class="wrapper frontpage" id="page-wrapper">
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
@@ -45,6 +45,8 @@
 								<?php get_template_part( 'form-parts/cf-submit' );  ?>									
 							</div>
 						</div>
+						<!-- Modal -->
+						<?php get_template_part( 'form-parts/cf-modal' );  ?>
 					</form>
 				</div>
 			</div>

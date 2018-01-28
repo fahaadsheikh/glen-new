@@ -1,6 +1,6 @@
 <?php $theme_options = get_option( 'dym_theme_options' );  ?>
 
-<div id="enf-modal" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div id="cf-modal" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p><?php echo get_bloginfo( 'name' ); ?> representative is busy getting your Property Report ready and will be in touch within 48 hours with your free report. </p>
+        <p><?php echo get_bloginfo( 'name' ); ?> representative will be in touch within 48 hours with your free report. </p>
         <p>All enquiries please email : <a href="mailto:<?php echo $theme_options['dym_admin_email'];?>"><?php echo $theme_options['dym_admin_email'];?></a></p>
       </div>
     </div>

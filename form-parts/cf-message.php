@@ -1,3 +1,3 @@
 <div class="form-group">
-  <textarea type="text" class="form-control" id="message" name="message" rows="7" placeholder="<?php echo __( 'Message', 'dym' ) ?>"></textarea>
+  <textarea class="form-control" id="text_message" name="text_message" rows="7" placeholder="<?php echo __( 'Message', 'dym' ) ?>"></textarea>
 </div>

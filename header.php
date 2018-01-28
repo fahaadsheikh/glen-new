@@ -8,6 +8,7 @@
  */
 
 $container = get_theme_mod( 'understrap_container_type' );
+$theme_options = get_option( 'dym_theme_options' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -83,14 +84,22 @@ $container = get_theme_mod( 'understrap_container_type' );
 	
 	<?php if ( is_front_page() ) : ?>
 		<div class="main-banner">
-	<?php else: ?>
-		<div class="page-banner">
-	<?php endif; ?>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-5">
-					<h2 class="page-title">Find Out What Your House is Worth For Free</h2>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5">
+						<h2 class="page-title"><?php echo sanitize_text_field( $theme_options['dym_homepage_banner_tagline'] ) ?></h2>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	<?php else: ?>
+		<div class="page-banner">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5">
+						<h2 class="page-title">Find Out What Your House is Worth For Free</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
