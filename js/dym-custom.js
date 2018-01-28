@@ -104,7 +104,73 @@ jQuery( document ).ready( function ($) {
 			} else {
 				error.insertAfter( element );
 			}
+		},
+		submitHandler: function(form) {
+			$(form).ajaxSubmit();
+			send_enquiry();
 		}
 	} );
+
+	function send_enquiry() {
+
+	    var form = jQuery(this);
+
+	    if ( form.data('requestRunning') ) {
+	        return;
+	    }
+
+	    form.data('requestRunning', true);
+
+	    jQuery.ajax({
+			url : ajax_object.ajax_url,
+			type : 'post',
+			dataType : 'text',
+			data : {
+				action 					: 'dym_send_and_save_enquiry',
+				property_type 			: $("#property_type").val(),
+				unit 					: $("#unit").val(),
+				street 					: $("#street").val(),
+				bedrooms 				: $("#bedrooms").val(),
+				street_name 			: $("#street_name").val(),
+				bathrooms 				: $("#bathrooms").val(),
+				suburbs 				: $("#suburbs").val(),
+				conditions 				: $("#condition").val(),
+				state 					: $("#state").val(),
+				est_size 				: $("#est_size").val(),
+				property_relationship 	: $("#property_relationship").val(),
+				parking 				: $("#parking").val(),
+				purpose_of_request 		: $("#purpose_of_request").val(),
+				special_features 		: $("#special_features").val(),
+				currently_listed 		: $("#input[name=currently_listed]:checked").val(),
+				other 					: $("#other").val(),
+				first_name 				: $("#first_name").val(),
+				surname 				: $("#surname").val(),
+				telephone 				: $("#telephone").val(),
+				email 					: $("#email").val(),
+				confirm_email			: $("#confirm_email").val(),
+				nonce 					: $("#enquiry_nonce").val(),
+			},
+			beforeSend: function () {
+				// Show Loader
+				$("#quotation-form-submit").css("display", "none");
+				$("#quotation-form-loader").css("display", "block");
+				console.log("check");
+			},
+			success: function( response ) {
+				
+				console.log(response);
+			},
+			error: function(xhr, ajaxOptions, thrownError) {				
+				$( '.response-message' ).removeClass('alert-success');
+				$( '.response-message' ).addClass('alert-danger');
+				$( '.response-message' ).text( 'There was an Error. Please Try Again' );
+			},
+			complete: function() {
+			    form.data('requestRunning', false);
+			}
+		});
+
+	    return false;
+	};
 
 });

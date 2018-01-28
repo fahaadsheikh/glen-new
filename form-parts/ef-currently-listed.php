@@ -3,13 +3,13 @@
   <div class="col-sm-8">
     <div class="form-check form-check-inline">
       <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="currently_listed" id="currently_listed" value="yes" checked>
+        <input class="form-check-input" type="radio" name="currently_listed" id="currently_listed" value="yes" >
         <?php echo __( 'Yes', 'dym' ) ?>
       </label>
     </div>
     <div class="form-check form-check-inline">
       <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="currently_listed" id="currently_listed" value="no" checked>
+        <input class="form-check-input" type="radio" name="currently_listed" id="currently_listed" value="no" >
         <?php echo __( 'No', 'dym' ) ?>
       </label>
     </div>

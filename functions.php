@@ -75,6 +75,13 @@ require get_template_directory() . '/inc/editor.php';
  */
 require get_template_directory() . '/theme-options/theme-options.php';
 
+/**
+ * Process Forms.
+ */
+require get_template_directory() . '/process-forms/class-dym-process-forms.php';
+
+
+
 
 add_action( 'admin_enqueue_scripts', 'dym_custom_assets' );
 function dym_custom_assets( $hook ) {
@@ -85,6 +92,8 @@ function dym_custom_assets( $hook ) {
         wp_enqueue_style( 'wp-color-picker' ); 
          
         // Include our custom jQuery file with WordPress Color Picker dependency
-        wp_enqueue_script( 'dym-custom-js', get_template_directory_uri() . '/js/custom.js', array( 'wp-color-picker' ), false, true ); 
+        wp_enqueue_script( 'dym-backend-custom-js', get_template_directory_uri() . '/js/dym-backend-custom.js', array( 'wp-color-picker' ), false, true ); 
+
+        
     }
 }

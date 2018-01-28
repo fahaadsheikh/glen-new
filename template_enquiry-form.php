@@ -15,7 +15,7 @@
 					<br>
 					<h3 class="sep">About Your Property</h3>
 					<p class="term">Required Fields to provide you with your FREE online property report.</p>
-					<form action="<?php the_permalink(); ?>" method="post" class="enquiry-form">
+					<form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post" class="enquiry-form">
 						<div class="row">
 							<!-- Property Type -->
 							<div class="col-md-6">
@@ -141,6 +141,9 @@
 									<?php get_template_part( 'form-parts/ef-terms-text' );  ?>	
 								</div>
 							</div>
+							<input type="hidden" name="enquiry_nonce" id="enquiry_nonce" value="<?php echo wp_create_nonce( "enquiry_nonce" ); ?>">
+							<input type="hidden" name="action" value="dym_send_and_save_enquiry">
+							<div class="response"></div>
 						</div>
 					</form>
 				</div>

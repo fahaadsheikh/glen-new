@@ -93,6 +93,14 @@ class MySettingsPage
             'my-setting-admin', // Page
             'dym_theme_setting_section' // Section           
         );  
+
+        add_settings_field(
+            'dym_admin_email', // ID
+            'Admin Email', // Title 
+            array( $this, 'dym_admin_email_callback' ), // Callback
+            'my-setting-admin', // Page
+            'dym_theme_setting_section' // Section           
+        );
     }
 
     /**
@@ -109,6 +117,8 @@ class MySettingsPage
             $new_input['secondary_color'] = sanitize_text_field( $input['secondary_color'] );
         if( isset( $input['background_color'] ) )
             $new_input['background_color'] = sanitize_text_field( $input['background_color'] );
+        if( isset( $input['dym_admin_email'] ) )
+            $new_input['dym_admin_email'] = sanitize_text_field( $input['dym_admin_email'] );
 
        
 
@@ -153,6 +163,17 @@ class MySettingsPage
         printf(
             '<input type="color" class="color-field" id="background_color" name="dym_theme_options[background_color]" value="%s" />',
             isset( $this->options['background_color'] ) ? esc_attr( $this->options['background_color']) : ''
+        );
+    }
+
+    /** 
+     * Get the settings option array and print one of its values
+     */
+    public function dym_admin_email_callback()
+    {
+        printf(
+            '<input type="email" class="regular-text" id="dym_admin_email" name="dym_theme_options[dym_admin_email]" value="%s" />',
+            isset( $this->options['dym_admin_email'] ) ? esc_attr( $this->options['dym_admin_email']) : ''
         );
     }
 
