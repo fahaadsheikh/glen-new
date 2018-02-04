@@ -32,10 +32,11 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		        .sep:after {
 		        	background-color: {$secondary_color};
 		        }
-		        a, .light, p.term, .modal-title, .feature-icon, .feature-title  {
+		        a, .light, p.term, .modal-title, .feature-icon, .feature-title, .navbar-light .navbar-brand a, .navbar-light .navbar-nav .nav-link  {
 		        	color: {$primary_color};
 		        }
-		        .dark, .loader, .section-title, .section-subtitle, .sep {
+		        .dark, .loader, .section-title, .section-subtitle, .sep,
+		        .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
 		        	color: {$secondary_color};
 		        }
 

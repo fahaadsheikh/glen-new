@@ -9709,7 +9709,8 @@ p.term:before {
 
 .feature-icon, .feature-title {
   color: #03a9f4;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  word-spacing: 200px; }
 
 .feature-description {
   font-size: 14px; }

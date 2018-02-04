@@ -257,6 +257,29 @@ class MySettingsPage
             'dym_theme_setting_section' // Section           
         );
 
+        // Feature 3
+        add_settings_field(
+            'dym_homepage_section_feature_four_icon', // ID
+            'Feature Four Icon', // Title 
+            array( $this, 'dym_homepage_section_feature_four_icon_callback' ), // Callback
+            'theme_options', // Page
+            'dym_theme_setting_section' // Section           
+        );
+        add_settings_field(
+            'dym_homepage_section_feature_four_heading', // ID
+            'Feature Four Heading', // Title 
+            array( $this, 'dym_homepage_section_feature_four_heading_callback' ), // Callback
+            'theme_options', // Page
+            'dym_theme_setting_section' // Section           
+        );
+        add_settings_field(
+            'dym_homepage_section_feature_four_text', // ID
+            'Feature Four Text', // Title 
+            array( $this, 'dym_homepage_section_feature_four_text_callback' ), // Callback
+            'theme_options', // Page
+            'dym_theme_setting_section' // Section           
+        );
+
         /* Enquiry Form Section */
 
         add_settings_field(
@@ -359,6 +382,15 @@ class MySettingsPage
             $new_input['dym_homepage_section_feature_three_heading'] =  sanitize_text_field( $input['dym_homepage_section_feature_three_heading'] );
         if( isset( $input['dym_homepage_section_feature_three_text'] ) )
             $new_input['dym_homepage_section_feature_three_text'] =  sanitize_text_field( $input['dym_homepage_section_feature_three_text'] );
+
+        // Feature 4
+        // Feature 3
+        if( isset( $input['dym_homepage_section_feature_four_icon'] ) )
+            $new_input['dym_homepage_section_feature_four_icon'] =  sanitize_text_field( $input['dym_homepage_section_feature_four_icon'] );
+        if( isset( $input['dym_homepage_section_feature_four_heading'] ) )
+            $new_input['dym_homepage_section_feature_four_heading'] =  sanitize_text_field( $input['dym_homepage_section_feature_four_heading'] );
+        if( isset( $input['dym_homepage_section_feature_four_text'] ) )
+            $new_input['dym_homepage_section_feature_four_text'] =  sanitize_text_field( $input['dym_homepage_section_feature_four_text'] );
 
         /* Enquiry Form  */
         if( isset( $input['dym_enquiry_intro_one'] ) )
@@ -543,6 +575,30 @@ class MySettingsPage
     public function dym_homepage_section_feature_three_text_callback()
     {
         $this->dym_generate_output('text', 'dym_homepage_section_feature_three_text', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.');
+    }
+
+    /** 
+     * Get the settings option array and print one of its values
+     */
+    public function dym_homepage_section_feature_four_icon_callback()
+    {
+        $this->dym_generate_output('text', 'dym_homepage_section_feature_four_icon', 'fa-bolt');
+    }
+
+    /** 
+     * Get the settings option array and print four of its values
+     */
+    public function dym_homepage_section_feature_four_heading_callback()
+    {
+        $this->dym_generate_output('text', 'dym_homepage_section_feature_four_heading', 'Speed up Development');
+    }
+
+    /** 
+     * Get the settings option array and print four of its values
+     */
+    public function dym_homepage_section_feature_four_text_callback()
+    {
+        $this->dym_generate_output('text', 'dym_homepage_section_feature_four_text', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.');
     }
 
     /** 

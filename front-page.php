@@ -20,10 +20,10 @@ $theme_options = get_option( 'dym_theme_options' );
 						<div class="featured-text">
 							<h4><?php echo $theme_options['dym_homepage_report_box_text'] ?></h4>
 						</div>
-						<a href="#" class="btn"><?php echo $theme_options['dym_homepage_report_button_text'] ?></a>
+						<a href="http://wordpressmu-89599-418163.cloudwaysapps.com/enquiry-form" class="btn"><?php echo $theme_options['dym_homepage_report_button_text'] ?></a>
 					</div>
 					<div class="col-md-5 featured-ico">
-						<img src="http://localhost/glen/wp-content/uploads/2018/01/Vector-Smart-Object.png">
+						<img src="http://wordpressmu-89599-418163.cloudwaysapps.com/wp-content/uploads/2018/01/Vector-Smart-Object.png">
 					</div>
 				</div>
 			</div>
@@ -45,25 +45,32 @@ $theme_options = get_option( 'dym_theme_options' );
 				<h5 class="section-subtitle"><?php echo $theme_options['dym_homepage_section_subtitle'] ?></h5>
 				<div class="features">
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="feature">
 								<div class="feature-icon"><i class="fa <?php echo $theme_options['dym_homepage_section_feature_one_icon'] ?>" aria-hidden="true"></i></div>
 								<div class="feature-title"><h3><?php echo $theme_options['dym_homepage_section_feature_one_heading'] ?></h3></div>
 								<div class="feature-description"><p><?php echo $theme_options['dym_homepage_section_feature_one_text'] ?></p></div>
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="feature">
 								<div class="feature-icon"><i class="fa <?php echo $theme_options['dym_homepage_section_feature_two_icon'] ?>" aria-hidden="true"></i></div>
-								<div class="feature-title"><h3><?php echo $theme_options['dym_homepage_section_feature_one_heading'] ?></h3></div>
-								<div class="feature-description"><p><?php echo $theme_options['dym_homepage_section_feature_one_text'] ?></p></div>
+								<div class="feature-title"><h3><?php echo $theme_options['dym_homepage_section_feature_two_heading'] ?></h3></div>
+								<div class="feature-description"><p><?php echo $theme_options['dym_homepage_section_feature_two_text'] ?></p></div>
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="feature">
 								<div class="feature-icon"><i class="fa <?php echo $theme_options['dym_homepage_section_feature_three_icon'] ?>" aria-hidden="true"></i></div>
-								<div class="feature-title"><h3><?php echo $theme_options['dym_homepage_section_feature_one_heading'] ?></h3></div>
-								<div class="feature-description"><p><?php echo $theme_options['dym_homepage_section_feature_one_text'] ?></p></div>
+								<div class="feature-title"><h3><?php echo $theme_options['dym_homepage_section_feature_three_heading'] ?></h3></div>
+								<div class="feature-description"><p><?php echo $theme_options['dym_homepage_section_feature_three_text'] ?></p></div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="feature">
+								<div class="feature-icon"><i class="fa <?php echo $theme_options['dym_homepage_section_feature_four_icon'] ?>" aria-hidden="true"></i></div>
+								<div class="feature-title"><h3><?php echo $theme_options['dym_homepage_section_feature_four_heading'] ?></h3></div>
+								<div class="feature-description"><p><?php echo $theme_options['dym_homepage_section_feature_four_text'] ?></p></div>
 							</div>
 						</div>
 					</div>
