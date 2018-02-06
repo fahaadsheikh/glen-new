@@ -32,7 +32,7 @@ $theme_options = get_option( 'dym_theme_options' );
 					<div class="col-md-12">
 						<div class="consult-box">
 							<h4><?php echo $theme_options['dym_homepage_consult_box_text'] ?></h4>
-							<a href="#" class="btn"><?php echo $theme_options['dym_homepage_consult_button_text'] ?></a>
+							<a href="#" class="btn get_my_report"><?php echo $theme_options['dym_homepage_consult_button_text'] ?></a>
 						</div>
 					</div>
 				</div>
@@ -78,6 +78,8 @@ $theme_options = get_option( 'dym_theme_options' );
 			</div>
 		</div>
 	</div>
+	<!-- Modal -->
+	<?php get_template_part( 'form-parts/fp-modal' );  ?>
 </div>
 </div>
 

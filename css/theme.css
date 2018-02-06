@@ -9642,7 +9642,8 @@ p.term:before {
   top: 0px;
   height: 35px;
   vertical-align: middle;
-  color: #002b3f; }
+  color: #002b3f;
+  display: none; }
 
 .section {
   margin-top: 100px; }
@@ -9693,8 +9694,7 @@ p.term:before {
   padding-left: 20px;
   position: relative;
   left: -20px;
-  margin-top: 20px;
-  border-color: #fff; }
+  margin-top: 20px; }
 
 /* Features */
 .features {

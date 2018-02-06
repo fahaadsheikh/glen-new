@@ -108,6 +108,7 @@ p.term:before {
     height: 35px;
     vertical-align: middle;
     color: $primary-dark;
+    display: none;
 }
 
 .section {
@@ -173,7 +174,6 @@ p.term:before {
     position: relative;
     left: -20px;
     margin-top: 20px;
-    border-color: #fff;
 }
 
 /* Features */

@@ -17,6 +17,10 @@ class dym_process_forms
 		// Enquiry Form
 		add_action('wp_ajax_dym_send_and_save_enquiry', array($this, 'dym_send_and_save_enquiry') );
 		add_action('wp_ajax_nopriv_dym_send_and_save_enquiry', array($this, 'dym_send_and_save_enquiry') );
+
+		// Consult Form
+		add_action('wp_ajax_dym_send_consult_request', array($this, 'dym_send_consult_request') );
+		add_action('wp_ajax_nopriv_dym_send_consult_request', array($this, 'dym_send_consult_request') );
 	}
 
 	/**
@@ -301,6 +305,65 @@ class dym_process_forms
 		$message .= get_bloginfo('name') . "<br>";
 		$message .= get_bloginfo('url') . "<br>";
 		$message .= $theme_options['dym_admin_email'] . "<br>";
+		$reply_message = wp_mail( $to , $subject, $message, $headers ); 
+
+		return $reply_message;
+	}
+
+	/**
+	 * Send Consult Request
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function dym_send_consult_request()
+	{
+		$name 		= sanitize_text_field( $_POST['name'] );
+		$email 		= sanitize_text_field( $_POST['email'] );
+		$phone 		= sanitize_text_field( $_POST['phone'] );
+
+		$dym_send_contact_email = $this->dym_send_consult_email($name, $email, $phone);
+
+
+		if ($dym_send_contact_email) {
+			$dym_send_thankyou_email = $this->dym_send_thankyou_email($email, 'Consult');
+		}
+
+		if ($dym_send_thankyou_email) {
+			echo "All Done";
+		}
+		else {
+			echo "Not Done";
+		}
+		wp_die();
+	}
+
+	/**
+	 * Send Contact Email
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function dym_send_consult_email($name, $email, $phone)
+	{
+		$theme_options = get_option( 'dym_theme_options' ); 
+
+		$form_entries = array( 
+			'Name' 		=> $name,
+			'Email' 	=> $email,
+			'Phone' 	=> $phone
+		);
+
+		$to = $email;
+		$subject = get_bloginfo('name') .'Consult Submission Recieved';
+		$message .= '<h3 align="center"> Consult Enquiry Information</h3>';
+		$message .= '<table rules="all" style="border-color: #666;" cellpadding="10" align="center">';
+		foreach ($form_entries as $key => $value) {
+			$message .= "<tr style='background: #eee;'><td>". $key ."</td><td>". $value ."</td></tr>";
+		}
+		$message .= "</table>";
+		$message .= '<h4 align="center">This e-mail was sent from the enquiry form on '. get_bloginfo( 'name' ) .'('. get_bloginfo('url') .')</h4>';
+		$message .= "<br><br><br>";
 		$reply_message = wp_mail( $to , $subject, $message, $headers ); 
 
 		return $reply_message;

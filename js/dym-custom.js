@@ -128,10 +128,12 @@ jQuery( document ).ready( function ($) {
 			beforeSend: function () {
 				// Show Loader
 				$('.btn').prop('disabled', true);
+				$(".loader").css('display', 'inline-block');
 				$(".loader").html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
 			},
 			success: function( response ) {
 				$('.btn').prop('disabled', false);
+				$(".loader").css('display', 'none');
 				$(".loader").html('');
 				$('#enf-modal').modal('show');
 			},
@@ -208,13 +210,103 @@ jQuery( document ).ready( function ($) {
 			beforeSend: function () {
 				// Show Loader
 				$('.btn').prop('disabled', true);
+				$(".loader").css('display', 'inline-block');
 				$(".loader").html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
 			},
 			success: function( response ) {
 				console.log(response);
 				$('.btn').prop('disabled', false);
+				$(".loader").css('display', 'none');
 				$(".loader").html('');
 				$('#cf-modal').modal('show');
+			},
+			error: function(xhr, ajaxOptions, thrownError) {				
+				$( '.response-message' ).removeClass('alert-success');
+				$( '.response-message' ).addClass('alert-danger');
+				$( '.response-message' ).text( 'There was an Error. Please Try Again' );
+			},
+			complete: function() {
+			    form.data('requestRunning', false);
+			}
+		});
+
+	    return false;
+	};
+
+	// Front page Modal
+
+	$( ".get_my_report" ).click(function() {
+		$('#fp-modal').modal('show');
+	});
+
+	// Contact Form Validaton
+	$( ".consult-form" ).validate({
+		rules: {
+			name: "required",
+			email: {
+				required: true,
+				email: true
+			},
+			telephone: "required",
+		},
+		messages: {
+			name: "Please enter your name",
+			email: "Please enter a valid email address",
+			telephone: "Please enter your phone number"
+		},
+		errorElement: "div",
+		errorPlacement: function ( error, element ) {
+			// Add the `help-block` class to the error element
+			error.addClass( "invalid-feedback" );
+			if ( element.prop( "type" ) === "checkbox" ) {
+				error.insertAfter( element.parent( "label" ) );
+			} else if(element.prop( "type" ) === "radio") {
+				error.appendTo( element.parent().parent() );
+			} else {
+				error.insertAfter( element );
+			}
+		},
+		submitHandler: function(form) {
+			$(form).ajaxSubmit();
+			send_consult_request();
+		}
+	});
+
+	function send_consult_request() {
+
+	    var form = jQuery(this);
+
+	    if ( form.data('requestRunning') ) {
+	        return;
+	    }
+
+	    form.data('requestRunning', true);
+
+	    jQuery.ajax({
+			url : ajax_object.ajax_url,
+			type : 'post',
+			dataType : 'text',
+			data : {
+				action 	: 'dym_send_consult_request',
+				name 	: $("#name").val(),
+				email 	: $("#email").val(),
+				phone 	: $("#phone").val()
+			},
+			beforeSend: function () {
+				// Show Loader
+				$('.btn').prop('disabled', true);
+				$(".loader").css('display', 'inline-block');
+				$(".loader").html('<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>');
+			},
+			success: function( response ) {
+				console.log(response);
+				$('.btn').prop('disabled', false);
+				$(".loader").html('<p>Your Message was sent successfully</p>');
+				$(".loader").css({
+					'display': 'block',
+					'width': '100%',
+					'height': 'auto'
+				});;
 			},
 			error: function(xhr, ajaxOptions, thrownError) {				
 				$( '.response-message' ).removeClass('alert-success');

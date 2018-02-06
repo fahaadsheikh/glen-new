@@ -5,7 +5,7 @@
     	<?php echo __( 'I agree to the following Terms and Conditions and Privacy Policy', 'dym' ) ?>*
     </label>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-4 text-right">
   	<div class="loader"></div>
 	<button type="submit" class="btn btn-primary"><?php echo __( 'Send your Details to Us', 'dym' ) ?></button>
   </div>
