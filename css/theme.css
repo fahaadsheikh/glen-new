@@ -9583,7 +9583,8 @@ body {
 .main-banner .col-md-5 {
   z-index: 3; }
 
-.main-banner:after {
+.main-banner:after,
+.page-banner:after {
   content: "";
   width: 100%;
   height: 100%;
