@@ -9693,7 +9693,8 @@ p.term:before {
   padding-left: 20px;
   position: relative;
   left: -20px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  border-color: #fff; }
 
 /* Features */
 .features {
