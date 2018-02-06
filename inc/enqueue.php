@@ -20,6 +20,7 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		$primary_color = $theme_options['primary_color'];
 		$secondary_color = $theme_options['secondary_color'];
 		$background_color = $theme_options['background_color'];
+		$rgba =	hex2rgb($theme_options['primary_color']);
 
 		$custom_css = "
 		        body{
@@ -38,6 +39,9 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		        .dark, .loader, .section-title, .section-subtitle, .sep,
 		        .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
 		        	color: {$secondary_color};
+		        }
+		        .main-banner:after {
+		            background-color: rgba({$rgba['r']}, {$rgba['g']}, {$rgba['b']}, 0.4);
 		        }
 
 		        ";
@@ -62,3 +66,21 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 } // endif function_exists( 'understrap_scripts' ).
 
 add_action( 'wp_enqueue_scripts', 'understrap_scripts' );
+
+
+function hex2rgb( $colour ) {
+        if ( $colour[0] == '#' ) {
+                $colour = substr( $colour, 1 );
+        }
+        if ( strlen( $colour ) == 6 ) {
+                list( $r, $g, $b ) = array( $colour[0] . $colour[1], $colour[2] . $colour[3], $colour[4] . $colour[5] );
+        } elseif ( strlen( $colour ) == 3 ) {
+                list( $r, $g, $b ) = array( $colour[0] . $colour[0], $colour[1] . $colour[1], $colour[2] . $colour[2] );
+        } else {
+                return false;
+        }
+        $r = hexdec( $r );
+        $g = hexdec( $g );
+        $b = hexdec( $b );
+        return array( 'red' => $r, 'green' => $g, 'blue' => $b );
+}
